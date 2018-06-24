@@ -1,0 +1,19 @@
+<div 
+    class="idea-outside" 
+    draggable="false" 
+    [style.width.px]="width" 
+    [style.height.px]="height" 
+    [style.left.px]="left" 
+    [style.top.px]="top" 
+    (drag)="onDrag($event)" 
+    (ondragend)="onDrop($event)">
+    <div 
+        class="idea-inside"
+        [style.width.px]="width * borderSize"
+        [style.height.px]="height * borderSize"
+        [style.left.px]="(width * (1 - borderSize)) / 2"
+        [style.top.px]="(height * (1 - borderSize)) / 2">
+        {{text}}
+    </div>
+</div>
+

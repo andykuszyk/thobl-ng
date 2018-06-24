@@ -1,0 +1,10 @@
+.idea-outside {
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+}
+.idea-inside {
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+}
