@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-idea',
@@ -6,24 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./idea.component.css']
 })
 export class IdeaComponent implements OnInit {
-
-    left: number;
-    top: number;
+    @Input() text: string;
+    @Input() left: number;
+    @Input() top: number;
+    @Input() size: number;
     width: number;
     height: number;
     mouseOffsetX: number;
     mouseOffsetY: number;
-    text: string;
     borderSize: number;
 
     constructor() {
-        this.left = 250;
-        this.top = 250;
-        this.width = 100;
-        this.height = 100;
+        this.width = 100 * this.size;
+        this.height = 100 *this.size;
         this.mouseOffsetX = null;
         this.mouseOffsetY = null;
-        this.text = "spam eggs";
         this.borderSize = 0.8;
     }
 
