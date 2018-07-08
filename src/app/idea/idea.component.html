@@ -4,13 +4,13 @@
     [style.height.px]="height" 
     [style.left.px]="left" 
     [style.top.px]="top" 
-    draggable="false" 
-    (drag)="onDrag($event)" 
-    (ondragend)="onDrop($event)">
+    draggable="false"
+    (mousedown)="onMouseDown()"
+    (mouseup)="onMouseUp()"
+    (mousemove)="onMouseMove($event)"
+    > 
     <div 
         draggable="false" 
-        (drag)="onDrag($event)" 
-        (ondragend)="onDrop($event)"   
         class="idea-inside"
         [style.width.px]="width * borderSize"
         [style.height.px]="height * borderSize"
@@ -18,8 +18,6 @@
         [style.top.px]="(height * (1 - borderSize)) / 2">
         <div 
             draggable="false" 
-            (drag)="onDrag($event)" 
-            (ondragend)="onDrop($event)"
             class="idea-text">
             {{text}}
         </div>

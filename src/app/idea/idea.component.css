@@ -2,6 +2,7 @@
     background: red;
     border-radius: 50%;
     position: absolute;
+    cursor: pointer;
 }
 .idea-inside {
     background: white;
@@ -13,4 +14,10 @@
     top: 50%;
     transform: translateY(-50%);
     text-align: center;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
 }

@@ -15,8 +15,10 @@ export class IdeaComponent implements OnInit {
     mouseOffsetX: number;
     mouseOffsetY: number;
     borderSize: number;
+    private _isDragging: boolean;
 
     constructor() {
+        this._isDragging = false;
     }
 
     ngOnInit() {
@@ -28,7 +30,16 @@ export class IdeaComponent implements OnInit {
 
     }
 
-    onDrag(event: any) {
+    onMouseDown() {
+        this._isDragging = true;
+    }
+
+    onMouseUp() {
+        this._isDragging = false;
+    }
+
+    onMouseMove(event: any) {
+        if (!this._isDragging) return;
         if(this.mouseOffsetX == null && this.mouseOffsetY == null) {
             this.mouseOffsetX = event.pageX - this.left;
             this.mouseOffsetY = event.pageY - this.top;
