@@ -36,6 +36,8 @@ export class IdeaComponent implements OnInit {
 
     onMouseUp() {
         this._isDragging = false;
+        this.mouseOffsetX = null;
+        this.mouseOffsetY = null;
     }
 
     onMouseMove(event: any) {
@@ -45,16 +47,7 @@ export class IdeaComponent implements OnInit {
             this.mouseOffsetY = event.pageY - this.top;
         }
 
-        if(event.pageX != 0 && event.pageY != 0) {
-            this.left = event.pageX - this.mouseOffsetX;
-            this.top = event.pageY - this.mouseOffsetY;
-        } else {
-            this.mouseOffsetX == null;
-            this.mouseOffsetY == null;
-        }
-    }
-
-    onDrop(event: any) {
-        console.log("dropped!");
+        this.left = event.pageX - this.mouseOffsetX;
+        this.top = event.pageY - this.mouseOffsetY;
     }
 }
