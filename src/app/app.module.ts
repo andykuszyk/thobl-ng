@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { IdeaComponent } from './idea/idea.component';
+import { SpaceComponent } from './space/space.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    IdeaComponent
+    IdeaComponent,
+    SpaceComponent
   ],
   imports: [
     BrowserModule
