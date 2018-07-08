@@ -17,14 +17,16 @@ export class IdeaComponent implements OnInit {
     borderSize: number;
 
     constructor() {
+    }
+
+    ngOnInit() {
         this.width = 100 * this.size;
         this.height = 100 *this.size;
         this.mouseOffsetX = null;
         this.mouseOffsetY = null;
         this.borderSize = 0.8;
-    }
 
-    ngOnInit() { }
+    }
 
     onDrag(event: any) {
         if(this.mouseOffsetX == null && this.mouseOffsetY == null) {
