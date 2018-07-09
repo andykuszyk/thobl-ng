@@ -3,12 +3,14 @@
     [style.width.px]="width" 
     [style.height.px]="height" 
     [style.left.px]="left" 
-    [style.top.px]="top" 
+    [style.top.px]="top"
+    [style.background]="background" 
     draggable="false"
     (mousedown)="onMouseDown()"
     (mouseup)="onMouseUp()"
     (mousemove)="onMouseMove($event)"
     (mouseout)="onMouseOut()"
+    (mouseover)="onMouseOver()"
     > 
     <div 
         draggable="false" 

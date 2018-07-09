@@ -16,6 +16,21 @@ export class IdeaComponent implements OnInit {
     mouseOffsetY: number;
     borderSize: number;
     private _isDragging: boolean;
+    background: string;
+    private _isSelected: boolean;
+
+    get isSelected():boolean {
+        return this._isSelected;
+    }
+
+    set isSelected(newIsSelected: boolean) {
+        this._isSelected = newIsSelected;
+        if (this._isSelected) {
+            this.background = 'blue';
+        } else {
+            this.background = 'red';
+        }
+    }
 
     constructor() {
         this._isDragging = false;
@@ -27,16 +42,22 @@ export class IdeaComponent implements OnInit {
         this.mouseOffsetX = null;
         this.mouseOffsetY = null;
         this.borderSize = 0.8;
-
+        this.background = 'red';
+        this._isSelected = false;
     }
 
     onMouseOut() {
-        console.log("out!");
         this.onMouseUp();
+        this.isSelected = this._isSelected;
+    }
+
+    onMouseOver() {
+        this.background = 'yellow';
     }
 
     onMouseDown() {
         this._isDragging = true;
+        this.isSelected = !this.isSelected;
     }
 
     onMouseUp() {

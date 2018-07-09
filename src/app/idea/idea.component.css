@@ -1,11 +1,7 @@
 .idea-outside {
-    background: red;
     border-radius: 50%;
     position: absolute;
     cursor: pointer;
-}
-.idea-outside:hover {
-    background: yellow;
 }
 .idea-inside {
     background: white;
