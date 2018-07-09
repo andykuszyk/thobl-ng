@@ -18,7 +18,9 @@
         [style.top.px]="(height * (1 - borderSize)) / 2">
         <div 
             draggable="false" 
-            class="idea-text">
+            class="idea-text"
+            [style.font-size.%]="size * 100"
+            >
             {{text}}
         </div>
     </div>
