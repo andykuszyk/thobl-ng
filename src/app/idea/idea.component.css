@@ -4,6 +4,9 @@
     position: absolute;
     cursor: pointer;
 }
+.idea-outside:hover {
+    background: yellow;
+}
 .idea-inside {
     background: white;
     border-radius: 50%;
