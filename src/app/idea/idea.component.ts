@@ -30,6 +30,11 @@ export class IdeaComponent implements OnInit {
 
     }
 
+    onMouseOut() {
+        console.log("out!");
+        this.onMouseUp();
+    }
+
     onMouseDown() {
         this._isDragging = true;
     }
