@@ -5,3 +5,25 @@
     width: 1000px;
     height: 1000px;
 }
+.idea-outside {
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+}
+.idea-inside {
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+}
+.idea-text {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}

@@ -1,15 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-idea',
-  templateUrl: './thought.component.html',
-  styleUrls: ['./thought.component.css']
-})
-export class ThoughtComponent implements OnInit {
-    @Input() text: string;
-    @Input() left: number;
-    @Input() top: number;
-    @Input() size: number;
+export class Thought {
+    text: string;
+    left: number;
+    top: number;
+    size: number;
     width: number;
     height: number;
     mouseOffsetX: number;
@@ -32,13 +25,14 @@ export class ThoughtComponent implements OnInit {
         }
     }
 
-    constructor() {
+    constructor(text: string, size: number, left: number, top: number) {
         this._isDragging = false;
-    }
-
-    ngOnInit() {
+        this.text = text;
+        this.left = left;
+        this.top = top;
+        this.size = size;
         this.width = 100 * this.size;
-        this.height = 100 *this.size;
+        this.height = 100 * this.size;
         this.mouseOffsetX = null;
         this.mouseOffsetY = null;
         this.borderSize = 0.8;

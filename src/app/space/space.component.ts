@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Thought } from '../thought/thought';
 
 @Component({
   selector: 'app-space',
@@ -6,25 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./space.component.css']
 })
 export class SpaceComponent implements OnInit {
-    ideas = [
-        {
-            "text" : "small",
-            "size" : 0.2,
-            "left" : 10,
-            "top" : 10,
-        }, 
-        {
-            "text" : "medium",
-            "size" : 1,
-            "left" : 400,
-            "top" : 200,
-        },
-        {
-            "text" : "large",
-            "size" : 2,
-            "left" : 100,
-            "top" : 300,
-        }
+    thoughts = [
+        new Thought("small", 0.2, 10, 10),
+        new Thought("medium", 1, 400, 200),
+        new Thought("large", 2, 100, 300),
     ];
 
     constructor() { }
