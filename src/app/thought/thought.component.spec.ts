@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IdeaComponent } from './idea.component';
+import { ThoughtComponent } from './thought.component';
 
-describe('IdeaComponent', () => {
-  let component: IdeaComponent;
-  let fixture: ComponentFixture<IdeaComponent>;
+describe('ThoughtComponent', () => {
+  let component: ThoughtComponent;
+  let fixture: ComponentFixture<ThoughtComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('IdeaComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IdeaComponent);
+    fixture = TestBed.createComponent(ThoughtComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

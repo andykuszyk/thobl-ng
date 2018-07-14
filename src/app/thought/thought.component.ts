@@ -2,10 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-idea',
-  templateUrl: './idea.component.html',
-  styleUrls: ['./idea.component.css']
+  templateUrl: './thought.component.html',
+  styleUrls: ['./thought.component.css']
 })
-export class IdeaComponent implements OnInit {
+export class ThoughtComponent implements OnInit {
     @Input() text: string;
     @Input() left: number;
     @Input() top: number;
