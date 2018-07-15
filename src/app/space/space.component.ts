@@ -18,4 +18,13 @@ export class SpaceComponent implements OnInit {
     ngOnInit() {
     }
 
+    onMouseDown(event: any) {
+        for(let thought of this.thoughts) {
+            if(thought.isOver(event.pageX, event.pageY)) {
+                thought.isSelected = true;
+            } else {
+                thought.isSelected = false;
+            }
+        }
+    }
 }

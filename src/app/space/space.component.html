@@ -1,4 +1,6 @@
-<div class="space">
+<div class="space"
+    (mousedown)="onMouseDown($event)"
+    >
     <div *ngFor="let thought of thoughts" 
         class="idea-outside" 
         [style.width.px]="thought.width" 

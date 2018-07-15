@@ -40,6 +40,14 @@ export class Thought {
         this._isSelected = false;
     }
 
+    isOver(x: number, y: number) {
+        if(x < this.left) return false;
+        if(y < this.top) return false;
+        if(x > this.left + this.width) return false;
+        if(y > this.top + this.height) return false;
+        return true;
+    }
+
     onMouseOut() {
         this.onMouseUp();
         this.isSelected = this._isSelected;
@@ -51,7 +59,6 @@ export class Thought {
 
     onMouseDown() {
         this._isDragging = true;
-        this.isSelected = !this.isSelected;
     }
 
     onMouseUp() {
