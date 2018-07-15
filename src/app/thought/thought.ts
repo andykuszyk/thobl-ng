@@ -11,6 +11,7 @@ export class Thought {
     isDragging: boolean;
     background: string;
     isEditing: boolean;
+    thoughts: Thought[];
     private _isSelected: boolean;
 
     get isSelected():boolean {
@@ -43,6 +44,7 @@ export class Thought {
         this.borderSize = 0.8;
         this.background = 'red';
         this._isSelected = false;
+        this.thoughts = [];
     }
 
     scale() {
