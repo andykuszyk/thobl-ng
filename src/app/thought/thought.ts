@@ -35,13 +35,32 @@ export class Thought {
         this.left = left;
         this.top = top;
         this.size = size;
-        this.width = 100 * this.size;
-        this.height = 100 * this.size;
+        this.scale();
         this.mouseOffsetX = null;
         this.mouseOffsetY = null;
         this.borderSize = 0.8;
         this.background = 'red';
         this._isSelected = false;
+    }
+
+    scale() {
+        this.width = 100 * this.size;
+        this.height = 100 * this.size;
+    }
+
+    onWheel(event:any) {
+        console.log(event);
+        if(event.deltaY < 0) {
+            this.size += 0.1;
+        } else {
+            this.size -= 0.1;
+            if (this.size < 0) {
+                this.size = 0;
+            }
+        }
+        this.scale();
+
+        return false;
     }
 
     isOver(x: number, y: number) {
