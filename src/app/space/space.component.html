@@ -5,7 +5,7 @@
     (dblclick)="onMouseDoubleClick($event)"
     >
     <div *ngFor="let thought of thoughts" 
-        class="idea-outside" 
+        class="thought-outside" 
         [style.width.px]="thought.width" 
         [style.height.px]="thought.height" 
         [style.left.px]="thought.left" 
@@ -19,14 +19,14 @@
         > 
         <div 
             draggable="false" 
-            class="idea-inside"
+            class="thought-inside"
             [style.width.px]="thought.width * thought.borderSize"
             [style.height.px]="thought.height * thought.borderSize"
             [style.left.px]="(thought.width * (1 - thought.borderSize)) / 2"
             [style.top.px]="(thought.height * (1 - thought.borderSize)) / 2">
             <div 
                 draggable="false" 
-                class="idea-text"
+                class="thought-text"
                 [style.font-size.%]="thought.size * 100"
                 (click)="thought.isEditing=true"
                 >
@@ -37,6 +37,15 @@
                     (keydown)="thought.onKeyDown($event)"
                     >
             </div>
+        </div>
+    </div>
+    <div class="thought-info" 
+        *ngFor="let thought of thoughts"
+        [style.left.px]="thought.left + thought.width + 10"
+        [style.top.px]="thought.top"                                      
+        >
+        <div *ngIf="thought.isSelected">
+            <button class="btn btn-danger" id="remove-thought">X</button>
         </div>
     </div>
 </div>

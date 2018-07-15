@@ -19,7 +19,11 @@ export class SpaceComponent implements OnInit {
     }
 
     onMouseDown(event: any) {
+        let thoughtsToRemove = [];
         for(let thought of this.thoughts) {
+            if(thought.isSelected && event.target.id == "remove-thought") {
+                thoughtsToRemove.push(thought); 
+            }
             if(thought.isOver(event.pageX, event.pageY)) {
                 thought.isSelected = true;
                 thought.isDragging = true;
@@ -28,6 +32,10 @@ export class SpaceComponent implements OnInit {
                 thought.isSelected = false;
                 thought.isEditing = false;
             }
+        }
+
+        for(let thought of thoughtsToRemove) {
+            this.thoughts.splice(this.thoughts.indexOf(thought, 0), 1);
         }
     }
 
