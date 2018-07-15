@@ -50,9 +50,9 @@ export class Thought {
         this.height = 100 * this.size;
     }
 
-    onKeyPress(event: any) {
+    onKeyDown(event: any) {
         this.text = event.target.value;
-        if(event.key == "Enter") {
+        if(event.key == "Enter" || event.key == "Escape") {
             this.isEditing = false;
         }
     }
