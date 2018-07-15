@@ -31,6 +31,17 @@ export class SpaceComponent implements OnInit {
         }
     }
 
+    onMouseDoubleClick(event: any) {
+        for(let t of this.thoughts) {
+            if(t.isOver(event.pageX, event.pageY)) return;
+        }
+
+        let thought = new Thought("untitled", 1, event.pageX, event.pageY);
+        thought.isSelected = true;
+        thought.isEditing = true;
+        this.thoughts.push(thought);
+    }
+        
     onMouseUp(event: any) {
         for(let thought of this.thoughts) {
             thought.isDragging = false;

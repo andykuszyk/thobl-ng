@@ -2,6 +2,7 @@
     (mousedown)="onMouseDown($event)"
     (mouseup)="onMouseUp($event)"
     (mousemove)="onMouseMove($event)"
+    (dblclick)="onMouseDoubleClick($event)"
     >
     <div *ngFor="let thought of thoughts" 
         class="idea-outside" 

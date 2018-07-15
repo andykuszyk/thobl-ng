@@ -34,10 +34,10 @@ export class Thought {
         this.isDragging = false;
         this.isEditing = false;
         this.text = text;
-        this.left = left;
-        this.top = top;
         this.size = size;
         this.scale();
+        this.left = left - this.width / 2;
+        this.top = top - this.height / 2;
         this.mouseOffsetX = null;
         this.mouseOffsetY = null;
         this.borderSize = 0.8;
