@@ -49,7 +49,6 @@ export class Thought {
     }
 
     onWheel(event:any) {
-        console.log(event);
         if(event.deltaY < 0) {
             this.size += 0.1;
         } else {
