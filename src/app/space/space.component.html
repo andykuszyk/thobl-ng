@@ -27,8 +27,14 @@
                 draggable="false" 
                 class="idea-text"
                 [style.font-size.%]="thought.size * 100"
+                (click)="thought.isEditing=true"
                 >
-                {{thought.text}}
+                <span *ngIf="!thought.isEditing" [innerText]="thought.text"></span>
+                <input 
+                    *ngIf="thought.isEditing" type="text" [ngModel]="thought.text"
+                    [style.width.px]="thought.width * thought.borderSize * 0.9"
+                    (keypress)="thought.onKeyPress($event)"
+                    >
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@ export class Thought {
     borderSize: number;
     isDragging: boolean;
     background: string;
+    isEditing: boolean;
     private _isSelected: boolean;
 
     get isSelected():boolean {
@@ -31,6 +32,7 @@ export class Thought {
 
     constructor(text: string, size: number, left: number, top: number) {
         this.isDragging = false;
+        this.isEditing = false;
         this.text = text;
         this.left = left;
         this.top = top;
@@ -46,6 +48,13 @@ export class Thought {
     scale() {
         this.width = 100 * this.size;
         this.height = 100 * this.size;
+    }
+
+    onKeyPress(event: any) {
+        this.text = event.target.value;
+        if(event.key == "Enter") {
+            this.isEditing = false;
+        }
     }
 
     onWheel(event:any) {

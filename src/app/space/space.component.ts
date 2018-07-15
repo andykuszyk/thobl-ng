@@ -26,6 +26,7 @@ export class SpaceComponent implements OnInit {
 
             } else {
                 thought.isSelected = false;
+                thought.isEditing = false;
             }
         }
     }
