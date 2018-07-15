@@ -8,7 +8,7 @@ export class Thought {
     mouseOffsetX: number;
     mouseOffsetY: number;
     borderSize: number;
-    private _isDragging: boolean;
+    isDragging: boolean;
     background: string;
     private _isSelected: boolean;
 
@@ -18,6 +18,10 @@ export class Thought {
 
     set isSelected(newIsSelected: boolean) {
         this._isSelected = newIsSelected;
+        this.setBackground();
+    }
+
+    setBackground() {
         if (this._isSelected) {
             this.background = 'blue';
         } else {
@@ -26,7 +30,7 @@ export class Thought {
     }
 
     constructor(text: string, size: number, left: number, top: number) {
-        this._isDragging = false;
+        this.isDragging = false;
         this.text = text;
         this.left = left;
         this.top = top;
@@ -50,25 +54,20 @@ export class Thought {
 
     onMouseOut() {
         this.onMouseUp();
-        this.isSelected = this._isSelected;
+        this.setBackground();
     }
 
     onMouseOver() {
         this.background = 'yellow';
     }
 
-    onMouseDown() {
-        this._isDragging = true;
-    }
-
     onMouseUp() {
-        this._isDragging = false;
         this.mouseOffsetX = null;
         this.mouseOffsetY = null;
     }
 
     onMouseMove(event: any) {
-        if (!this._isDragging) return;
+        if (!this.isDragging) return;
         if(this.mouseOffsetX == null && this.mouseOffsetY == null) {
             this.mouseOffsetX = event.pageX - this.left;
             this.mouseOffsetY = event.pageY - this.top;

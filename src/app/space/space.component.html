@@ -1,5 +1,7 @@
 <div class="space"
     (mousedown)="onMouseDown($event)"
+    (mouseup)="onMouseUp($event)"
+    (mousemove)="onMouseMove($event)"
     >
     <div *ngFor="let thought of thoughts" 
         class="idea-outside" 
@@ -9,9 +11,7 @@
         [style.top.px]="thought.top"
         [style.background]="thought.background" 
         draggable="false"
-        (mousedown)="thought.onMouseDown()"
         (mouseup)="thought.onMouseUp()"
-        (mousemove)="thought.onMouseMove($event)"
         (mouseout)="thought.onMouseOut()"
         (mouseover)="thought.onMouseOver()"
         > 

@@ -22,9 +22,24 @@ export class SpaceComponent implements OnInit {
         for(let thought of this.thoughts) {
             if(thought.isOver(event.pageX, event.pageY)) {
                 thought.isSelected = true;
+                thought.isDragging = true;
+
             } else {
                 thought.isSelected = false;
             }
+        }
+    }
+
+    onMouseUp(event: any) {
+        for(let thought of this.thoughts) {
+            thought.isDragging = false;
+        }
+    }
+
+    onMouseMove(event: any) {
+        for(let thought of this.thoughts) {
+            if(!thought.isDragging) continue;
+            thought.onMouseMove(event);
         }
     }
 }
