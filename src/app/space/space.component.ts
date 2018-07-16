@@ -14,7 +14,7 @@ export class SpaceComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.currentThought = new Thought("", 0, 0, 0);
+        this.currentThought = new Thought("Root", 0, 0, 0);
         this.currentThought.thoughts = [
             new Thought("small", 0.2, 10, 10),
             new Thought("medium", 1, 400, 200),
