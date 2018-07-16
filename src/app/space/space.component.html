@@ -1,6 +1,6 @@
 <ol class="breadcrumb space-breadcrumb" style="breadcrumb-divider: none;">
-    <li *ngFor="let thought of previousThoughts" class="breadcrumb-item" [innerText]="thought.text"></li>
-    <li class="breadcrumb-item" [innerText]="currentThought.text"></li>
+    <li *ngFor="let thought of previousThoughts" class="breadcrumb-item"><a href="#" (click)="selectCurrentThought(thought)">{{thought.text}}</a></li>
+    <li class="breadcrumb-item"><a href="#">{{currentThought.text}}</a></li>
 </ol>
 <div class="space"
     (mousedown)="onMouseDown($event)"

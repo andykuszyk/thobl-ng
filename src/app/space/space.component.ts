@@ -61,6 +61,16 @@ export class SpaceComponent implements OnInit {
         this.thoughts = this.currentThought.thoughts;
     }
 
+    selectCurrentThought(thought: Thought) {
+        while (this.previousThoughts.length > 0) {
+            if (this.previousThoughts.pop() == thought) {
+                this.currentThought = thought;
+                this.thoughts = this.currentThought.thoughts;
+                break;
+            }
+        }
+    }
+
     onMouseDoubleClick(event: any) {
         for(let t of this.thoughts) {
             if(t.isOver(event.pageX, event.pageY)) return;
