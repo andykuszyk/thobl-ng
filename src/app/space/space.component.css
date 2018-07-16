@@ -4,6 +4,10 @@
     background-size: 30px 30px;
     width: 100vw;
     height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
 }
 .thought-outside {
     border-radius: 50%;
