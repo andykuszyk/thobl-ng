@@ -16,20 +16,15 @@ export class SpaceComponent implements OnInit {
     ngOnInit() {
         this.currentThought = new Thought("Root", 0, 0, 0);
         this.currentThought.thoughts = [
-            new Thought("small", 0.2, 10, 10),
-            new Thought("medium", 1, 400, 200),
-            new Thought("large", 2, 100, 300),
+            new Thought("small", 0.5, 100, 200),
+            new Thought("medium", 1, 400, 400),
+            new Thought("large", 2, 100, 500),
         ];
         this.thoughts = this.currentThought.thoughts;
         this.previousThoughts = [];
     }
 
     onMouseDown(event: any) {
-        if(event.target.id == "back") {
-            this.goBack();
-            return;
-        }
-        
         let thoughtsToRemove = [];
         for(let thought of this.thoughts) {
             if(thought.isSelected && event.target.id == "remove-thought") {
@@ -53,12 +48,6 @@ export class SpaceComponent implements OnInit {
         for(let thought of thoughtsToRemove) {
             this.thoughts.splice(this.thoughts.indexOf(thought, 0), 1);
         }
-    }
-
-    goBack() {
-        if(this.previousThoughts.length == 0) return;
-        this.currentThought = this.previousThoughts.pop();
-        this.thoughts = this.currentThought.thoughts;
     }
 
     selectCurrentThought(thought: Thought) {

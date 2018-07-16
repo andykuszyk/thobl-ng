@@ -8,9 +8,6 @@
     (mousemove)="onMouseMove($event)"
     (dblclick)="onMouseDoubleClick($event)"
     >
-    <div style="position: absolute; left=10px; top=10px;">
-        <button class="btn btn-primary" id="back">Back</button>
-    </div>
     <div *ngFor="let thought of thoughts" 
         class="thought-outside" 
         [style.width.px]="thought.width" 
