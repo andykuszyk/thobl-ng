@@ -48,7 +48,7 @@
         [style.left.px]="thought.left + thought.width + 10"
         [style.top.px]="thought.top"                                      
         >
-        <div *ngIf="thought.isSelected" class="container">
+        <div *ngIf="thought.isSelected && selectedThoughts != null && selectedThoughts.length < 2" class="container">
             <div class="row">
                 <button class="btn btn-danger" id="remove-thought">X</button>
             </div>

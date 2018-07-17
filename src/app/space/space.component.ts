@@ -13,6 +13,16 @@ export class SpaceComponent implements OnInit {
     currentThought: Thought;
     lines: Line[]
 
+    get selectedThoughts: Thought[] {
+        let selectedThoughts = [];
+        for(let thought of this.thoughts) {
+            if(thought.isSelected) {
+                selectedThoughts.push(thought);
+            }
+        }
+        return selectedThoughts;
+    }
+
     constructor() { }
 
     ngOnInit() {
