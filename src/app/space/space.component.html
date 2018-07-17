@@ -57,6 +57,17 @@
             </div>
         </div>
     </div>
+    <div 
+        class="thought-info" 
+        *ngIf="selectedThoughts != null && selectedThoughts.length > 1"
+        [style.left.px]="selectedThoughtsX2"
+        [style.top.px]="selectedThoughtsY1"
+        >
+        <div class="container">
+            <div class="row"><button class="btn btn-primary">Move</button></div>
+            <div class="row"><button class="btn btn-primary" (click)="makeLinesPermenant()">Make lines permenant</button></div>
+        </div>
+    </div>
     <svg width="100%" height="100%"> 
         <line *ngFor="let line of lines" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" stroke="black"/>
     </svg>

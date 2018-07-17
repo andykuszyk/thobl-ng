@@ -13,7 +13,7 @@ export class SpaceComponent implements OnInit {
     currentThought: Thought;
     lines: Line[]
 
-    get selectedThoughts: Thought[] {
+    get selectedThoughts(): Thought[] {
         let selectedThoughts = [];
         for(let thought of this.thoughts) {
             if(thought.isSelected) {
@@ -23,7 +23,21 @@ export class SpaceComponent implements OnInit {
         return selectedThoughts;
     }
 
+    get selectedThoughtsX2(): number {
+        if(this.selectedThoughts == null || this.selectedThoughts.length == 1) return 0;
+        return Math.max(...this.selectedThoughts.map(t => t.left + t.width));
+    }
+
+    get selectedThoughtsY1(): number {
+        if(this.selectedThoughts == null || this.selectedThoughts.length == 1) return 0;
+        return Math.min(...this.selectedThoughts.map(t => t.top));
+    }
+    
     constructor() { }
+    
+    makeLinesPermenant() {
+        console.log('perm!');
+    }
 
     ngOnInit() {
         this.currentThought = new Thought("Root", 0, 0, 0);
@@ -65,6 +79,8 @@ export class SpaceComponent implements OnInit {
         }
 
         this.populateLines();
+
+        return false;
     }
 
     populateLines() {
@@ -86,7 +102,7 @@ export class SpaceComponent implements OnInit {
                 let x2 = t.left + t.width / 2;
                 let y1 = thought.top + thought.height / 2;
                 let y2 = t.top + t.height / 2
-                this.lines.push(new Line(x1, x2, y1, y2);
+                this.lines.push(new Line(x1, x2, y1, y2));
             }
         }
     }
