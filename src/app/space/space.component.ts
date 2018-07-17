@@ -25,6 +25,7 @@ export class SpaceComponent implements OnInit {
     }
 
     onMouseDown(event: any) {
+        console.log(event);
         let thoughtsToRemove = [];
         for(let thought of this.thoughts) {
             if(thought.isSelected && event.target.id == "remove-thought") {
@@ -40,8 +41,10 @@ export class SpaceComponent implements OnInit {
                 thought.isDragging = true;
 
             } else {
-                thought.isSelected = false;
-                thought.isEditing = false;
+                if(!event.ctrlKey) {
+                    thought.isSelected = false;
+                    thought.isEditing = false;
+                }
             }
         }
 
