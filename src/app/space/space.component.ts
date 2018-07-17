@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Thought } from '../thought/thought';
+import { Line } from '../thought/line';
 
 @Component({
   selector: 'app-space',
@@ -10,6 +11,7 @@ export class SpaceComponent implements OnInit {
     thoughts: Thought[];
     previousThoughts: Thought[];
     currentThought: Thought;
+    lines: Line[]
 
     constructor() { }
 
@@ -22,6 +24,7 @@ export class SpaceComponent implements OnInit {
         ];
         this.thoughts = this.currentThought.thoughts;
         this.previousThoughts = [];
+        this.lines = [];
     }
 
     onMouseDown(event: any) {
@@ -49,6 +52,28 @@ export class SpaceComponent implements OnInit {
 
         for(let thought of thoughtsToRemove) {
             this.thoughts.splice(this.thoughts.indexOf(thought, 0), 1);
+        }
+
+        this.populateLines();
+    }
+
+    populateLines() {
+        let selectedThoughts: Thought[] = [];
+        for(let thought of this.thoughts) {
+            if(thought.isSelected) {
+                selectedThoughts.push(thought);
+            }
+        }
+        if(selectedThoughts.length < 2) {
+            this.lines = [];   
+            return;
+        }
+
+        while(selectedThoughts.length > 1) {
+            let thought = selectedThoughts.pop();
+            for(let t in selectedThoughts) {
+                //this.lines.push(new Line(thought.left, t.left, thought.top, t.top));
+            }
         }
     }
 
