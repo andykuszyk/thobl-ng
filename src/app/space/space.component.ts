@@ -25,7 +25,6 @@ export class SpaceComponent implements OnInit {
     }
 
     onMouseDown(event: any) {
-        console.log(event);
         let thoughtsToRemove = [];
         for(let thought of this.thoughts) {
             if(thought.isSelected && event.target.id == "remove-thought") {
