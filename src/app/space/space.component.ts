@@ -69,10 +69,14 @@ export class SpaceComponent implements OnInit {
             return;
         }
 
-        while(selectedThoughts.length > 1) {
+        while(selectedThoughts.length > 0) {
             let thought = selectedThoughts.pop();
-            for(let t in selectedThoughts) {
-                //this.lines.push(new Line(thought.left, t.left, thought.top, t.top));
+            for(let t of selectedThoughts) {
+                let x1 = thought.left + thought.width / 2;
+                let x2 = t.left + t.width / 2;
+                let y1 = thought.top + thought.height / 2;
+                let y2 = t.top + t.height / 2
+                this.lines.push(new Line(x1, x2, y1, y2);
             }
         }
     }
