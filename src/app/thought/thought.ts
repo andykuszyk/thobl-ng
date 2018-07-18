@@ -47,6 +47,14 @@ export class Thought {
         this.thoughts = [];
     }
 
+    getCenterX() {
+        return this.left + this.width / 2;
+    }
+
+    getCenterY() {
+        return this.top + this.height / 2;
+    }
+
     scale() {
         this.width = 100 * this.size;
         this.height = 100 * this.size;

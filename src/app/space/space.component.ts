@@ -35,10 +35,6 @@ export class SpaceComponent implements OnInit {
     
     constructor() { }
     
-    makeLinesPermenant() {
-        console.log('perm!');
-    }
-
     ngOnInit() {
         this.currentThought = new Thought("Root", 0, 0, 0);
         this.currentThought.thoughts = [
@@ -54,23 +50,29 @@ export class SpaceComponent implements OnInit {
     onMouseDown(event: any) {
         let thoughtsToRemove = [];
         for(let thought of this.thoughts) {
-            if(thought.isSelected && event.target.id == "remove-thought") {
+            if(event.target.id == "make-lines-permenant") {
+                for(let line of this.lines.filter(l => !l.isPermenant)) {
+                    line.isPermenant = true;
+                    if(thought.isOver(line.x1, line.y1)) {
+                        line.thought1 = thought;
+                    } else if(thought.isOver(line.x2, line.y2)) {
+                        line.thought2 = thought;
+                    }
+                }
+                return;
+            } else if(thought.isSelected && event.target.id == "remove-thought") {
                 thoughtsToRemove.push(thought); 
-            }
-            if(thought.isSelected && event.target.id == "open-thought") {
+            } else if(thought.isSelected && event.target.id == "open-thought") {
                 this.thoughts = thought.thoughts;
                 this.previousThoughts.push(this.currentThought);
                 this.currentThought = thought;
-            }
-            if(thought.isOver(event.pageX, event.pageY)) {
+            } else if(thought.isOver(event.pageX, event.pageY)) {
                 thought.isSelected = true;
                 thought.isDragging = true;
 
-            } else {
-                if(!event.ctrlKey) {
-                    thought.isSelected = false;
-                    thought.isEditing = false;
-                }
+            } else if(!event.ctrlKey) {
+                thought.isSelected = false;
+                thought.isEditing = false;
             }
         }
 
@@ -91,17 +93,17 @@ export class SpaceComponent implements OnInit {
             }
         }
         if(selectedThoughts.length < 2) {
-            this.lines = [];   
+            this.lines = this.lines.filter(l => l.isPermenant);   
             return;
         }
 
         while(selectedThoughts.length > 0) {
             let thought = selectedThoughts.pop();
             for(let t of selectedThoughts) {
-                let x1 = thought.left + thought.width / 2;
-                let x2 = t.left + t.width / 2;
-                let y1 = thought.top + thought.height / 2;
-                let y2 = t.top + t.height / 2
+                let x1 = thought.getCenterX();
+                let x2 = t.getCenterX();
+                let y1 = thought.getCenterY();
+                let y2 = t.getCenterY()
                 this.lines.push(new Line(x1, x2, y1, y2));
             }
         }
@@ -138,6 +140,9 @@ export class SpaceComponent implements OnInit {
         for(let thought of this.thoughts) {
             if(!thought.isDragging) continue;
             thought.onMouseMove(event);
+        }
+        for(let line of this.lines) {
+            line.reposition();
         }
     }
 }
