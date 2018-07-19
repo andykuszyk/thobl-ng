@@ -1,3 +1,5 @@
+import { Line } from './line';
+
 export class Thought {
     text: string;
     left: number;
@@ -12,6 +14,7 @@ export class Thought {
     background: string;
     isEditing: boolean;
     thoughts: Thought[];
+    lines: Line[];
     private _isSelected: boolean;
 
     get isSelected():boolean {
@@ -45,6 +48,7 @@ export class Thought {
         this.background = 'red';
         this._isSelected = false;
         this.thoughts = [];
+        this.lines = [];
     }
 
     getCenterX() {

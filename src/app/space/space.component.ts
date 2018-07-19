@@ -11,7 +11,11 @@ export class SpaceComponent implements OnInit {
     thoughts: Thought[];
     previousThoughts: Thought[];
     currentThought: Thought;
-    lines: Line[]
+    
+    get lines(): Line[] {
+        if(this.currentThought == null) return [];
+        return this.currentThought.lines;
+    }
 
     get selectedThoughts(): Thought[] {
         let selectedThoughts = [];
@@ -44,7 +48,6 @@ export class SpaceComponent implements OnInit {
         ];
         this.thoughts = this.currentThought.thoughts;
         this.previousThoughts = [];
-        this.lines = [];
     }
 
     onMouseDown(event: any) {
@@ -97,7 +100,9 @@ export class SpaceComponent implements OnInit {
             }
         }
         if(selectedThoughts.length < 2) {
-            this.lines = this.lines.filter(l => l.isPermenant);   
+            if(this.currentThought != null) {
+                this.currentThought.lines = this.lines.filter(l => l.isPermenant);   
+            }
             return;
         }
 
