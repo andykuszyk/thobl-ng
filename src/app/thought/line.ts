@@ -20,10 +20,10 @@ export class Line {
     }
 
     reposition() {
-        if(this.thought1 == null || thi.thought2 == null) return;
-        this.x1 = thought1.left + thought1.width / 2;
-        this.y1 = thought1.top thought1.height / 2;
-        this.x2 = thought2.left + thought2.width / 2;
-        this.y2 = thought2.top + thought2.height / 2;
+        if(this.thought1 == null || this.thought2 == null) return;
+        this.x1 = this.thought1.left + this.thought1.width / 2;
+        this.y1 = this.thought1.top + this.thought1.height / 2;
+        this.x2 = this.thought2.left + this.thought2.width / 2;
+        this.y2 = this.thought2.top + this.thought2.height / 2;
     }
 }

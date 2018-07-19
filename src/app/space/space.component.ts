@@ -48,19 +48,23 @@ export class SpaceComponent implements OnInit {
     }
 
     onMouseDown(event: any) {
-        let thoughtsToRemove = [];
-        for(let thought of this.thoughts) {
-            if(event.target.id == "make-lines-permenant") {
-                for(let line of this.lines.filter(l => !l.isPermenant)) {
-                    line.isPermenant = true;
+        if(event.target.id == "make-lines-permenant") {
+            for(let line of this.lines.filter(l => !l.isPermenant)) {
+                line.isPermenant = true;
+                for(let thought of this.thoughts) {
                     if(thought.isOver(line.x1, line.y1)) {
                         line.thought1 = thought;
                     } else if(thought.isOver(line.x2, line.y2)) {
                         line.thought2 = thought;
                     }
                 }
-                return;
-            } else if(thought.isSelected && event.target.id == "remove-thought") {
+            }
+            return;
+        }
+        
+        let thoughtsToRemove = [];
+        for(let thought of this.thoughts) {
+            if(thought.isSelected && event.target.id == "remove-thought") {
                 thoughtsToRemove.push(thought); 
             } else if(thought.isSelected && event.target.id == "open-thought") {
                 this.thoughts = thought.thoughts;
