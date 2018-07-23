@@ -88,8 +88,6 @@ export class SpaceComponent implements OnInit {
         }
 
         this.populateLines();
-
-        return false;
     }
 
     populateLines() {
