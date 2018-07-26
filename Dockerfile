@@ -3,7 +3,7 @@ COPY ./dist/thoughtspace/* app/dist/thoughtspace/
 COPY ./api/* app/api/
 COPY ./package.json app/
 WORKDIR app
-RUN npm install
+RUN npm install express --save
 EXPOSE 8080
 CMD node ./api/api.js
 
