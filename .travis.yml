@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-    - '8'
+- '8'
 sudo: required
 services:
 - docker
@@ -9,3 +9,7 @@ before_script:
 - docker login -u $dockerhubuser -p $dockerhubpassword docker.io
 script:
 - "./build.sh"
+before_install:
+- openssl aes-256-cbc -K $encrypted_240fce15bff7_key -iv $encrypted_240fce15bff7_iv
+  -in id_rsa.enc -out id_rsa -d
+- chmod 700 id_rsa
