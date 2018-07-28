@@ -4,5 +4,7 @@ services:
         image: andykuszyk/thobl:[version]
         ports: 
             - "4200:4200"
-        deploy:
-            replicas: 2
+        networks:
+            - net
+networks:
+    net:
