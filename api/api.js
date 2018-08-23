@@ -19,12 +19,16 @@ async function verifyToken(token) {
     }
 };
 
-app.use(async function (req, res, next) {
+app.use('/api/*', async function (req, res, next) {
     var id = await verifyToken(req.get('Authorization'));
     if(id == null) {
         return res.status(401).send();
     }
     next();
+});
+
+app.post('/users', function(req, res) {
+    res.status(201).send();
 });
 
 app.use(bodyParser.json());

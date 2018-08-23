@@ -37,7 +37,7 @@ export class LoginService {
         this.idToken = user.idToken;
         this.name = user.name;
         
-        var url = window.location.protocol + '//' + window.location.host + '/users';
+        var url = window.location.protocol + '//' + window.location.host + '/api/users';
 
         this.http.post(url, null, { headers: new HttpHeaders({'Content-Type': 'application/json','Authorization': idToken}), observe: 'response'}).subscribe(res => {
             console.log(res.status);
