@@ -19,5 +19,9 @@
      </g>
     </svg>
     </a>
+    <ul class="nav-bar nav">
+        <li class="nav-item" *ngIf="!loginService.isLoggedIn"><a href="#" (click)="loginService.signInWithGoogle()">Sign-in</a></li>
+        <li class="nav-item" *ngIf="loginService.isLoggedIn"><a href="#" (click)="loginService.signOut()">Sign-out</a></li>
+    </ul>
 </nav>
 <app-space></app-space>
