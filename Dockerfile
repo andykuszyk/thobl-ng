@@ -4,5 +4,5 @@ COPY ./api/* app/api/
 COPY ./package.json app/
 WORKDIR app
 RUN npm install express --save
-CMD node ./api/api.js
+CMD node ./api/api.js 80 $MONGOUSER $MONGOPASSWORD 
 
