@@ -27,7 +27,7 @@ app.use('/api/*', async function (req, res, next) {
     next();
 });
 
-app.post('/users', function(req, res) {
+app.post('/api/users', function(req, res) {
     res.status(201).send();
 });
 
