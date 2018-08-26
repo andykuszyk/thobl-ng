@@ -24,6 +24,7 @@
     "core-js": "^2.5.4",
     "express": "^4.16.3",
     "google-auth-library": "^1.6.1",
+    "mongoose": "^5.2.9",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },
