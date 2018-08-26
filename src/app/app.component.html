@@ -21,7 +21,7 @@
     </a>
     <ul class="nav-bar nav">
         <li class="nav-item" *ngIf="!this.loginService.isLoggedIn"><a href="#" (click)="signIn()">Sign-in</a></li>
-        <li class="nav-item" *ngIf="this.loginService.isLoggedIn"><a href="#" (click)="this.loginService.signOut()">Sign-out</a></li>
+        <li class="nav-item" *ngIf="this.loginService.isLoggedIn"><a href="#" (click)="this.loginService.signOut()">Sign-out</a><img width="32" height="32" src="{{this.loginService.photoUrl}}"/></li>
     </ul>
 </nav>
 <app-space></app-space>

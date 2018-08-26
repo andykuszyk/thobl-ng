@@ -17,7 +17,8 @@ export class LoginService {
     isLoggedIn: boolean;
     name: string;
     idToken: string;
-    
+    photoUrl: string;
+
     signInWithGoogle(): void {
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     }
@@ -36,6 +37,7 @@ export class LoginService {
         var idToken = user.idToken;
         this.idToken = user.idToken;
         this.name = user.name;
+        this.photoUrl = user.photoUrl;
         
         var url = window.location.protocol + '//' + window.location.host + '/api/users';
 
