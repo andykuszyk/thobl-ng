@@ -1,6 +1,7 @@
 import { Line } from './line';
 
 export class Thought {
+    private _id: string;
     text: string;
     left: number;
     top: number;
@@ -49,6 +50,19 @@ export class Thought {
         this._isSelected = false;
         this.thoughts = [];
         this.lines = [];
+    }
+
+    toJson() {
+        return {
+            _id: this._id,
+            text: this.text,
+            left: this.left,
+            top: this.top,
+            size: this.size,
+            width: this.width,
+            height: this.height,
+            parentId: null,
+        };
     }
 
     getCenterX() {

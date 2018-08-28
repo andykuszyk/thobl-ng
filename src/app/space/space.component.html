@@ -1,7 +1,16 @@
-<ol class="breadcrumb space-breadcrumb" style="breadcrumb-divider: none;">
-    <li *ngFor="let thought of previousThoughts" class="breadcrumb-item"><a href="#" (click)="selectCurrentThought(thought)">{{thought.text}}</a></li>
-    <li class="breadcrumb-item"><a href="#">{{currentThought.text}}</a></li>
-</ol>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ol class="breadcrumb space-breadcrumb" style="breadcrumb-divider: none;">
+                <li *ngFor="let thought of previousThoughts" class="breadcrumb-item"><a href="#" (click)="selectCurrentThought(thought)">{{thought.text}}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{currentThought.text}}</a></li>
+            </ol>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" (click)="save()">Save</button>
+        </div>
+    </div>
+</div>
 <div class="space"
     (mousedown)="onMouseDown($event)"
     (mouseup)="onMouseUp($event)"

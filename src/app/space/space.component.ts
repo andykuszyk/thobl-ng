@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Thought } from '../thought/thought';
 import { Line } from '../thought/line';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-space',
@@ -37,7 +39,7 @@ export class SpaceComponent implements OnInit {
         return Math.min(...this.selectedThoughts.map(t => t.top));
     }
     
-    constructor() { }
+    constructor(private http: HttpClient, private loginService: LoginService) { }
     
     ngOnInit() {
         this.currentThought = new Thought("Root", 0, 0, 0);
@@ -151,5 +153,14 @@ export class SpaceComponent implements OnInit {
         for(let line of this.lines) {
             line.reposition();
         }
+    }
+
+    save() {
+        let t = this.currentThought;
+        this.http.post('api/thoughts', t.toJson(), { headers: new HttpHeaders({'Content-Type': 'application/json','Authorization': this.loginService.idToken}), observe: 'response'}).subscribe(
+            res => { console.log('success'); },
+            res => { console.log('failure'); }
+        );
+
     }
 }
