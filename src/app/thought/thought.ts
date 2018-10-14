@@ -1,7 +1,10 @@
 import { Line } from './line';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LoginService } from '../login.service';
 
 export class Thought {
-    private _id: string;
+    _id: string;
+    private _isNew: boolean;
     text: string;
     left: number;
     top: number;
@@ -16,7 +19,12 @@ export class Thought {
     isEditing: boolean;
     thoughts: Thought[];
     lines: Line[];
+    parentId: string;
     private _isSelected: boolean;
+
+    get isNew(): boolean {
+        return this._isNew;
+    }
 
     get isSelected():boolean {
         return this._isSelected;
@@ -35,7 +43,7 @@ export class Thought {
         }
     }
 
-    constructor(text: string, size: number, left: number, top: number) {
+    constructor(private http: HttpClient, private loginService: LoginService, text: string, size: number, left: number, top: number, id = null) {
         this.isDragging = false;
         this.isEditing = false;
         this.text = text;
@@ -50,6 +58,8 @@ export class Thought {
         this._isSelected = false;
         this.thoughts = [];
         this.lines = [];
+        this._id = id;
+        this._isNew = this._id == null;
     }
 
     toJson() {
@@ -61,7 +71,7 @@ export class Thought {
             size: this.size,
             width: this.width,
             height: this.height,
-            parentId: null,
+            parentId: this.parentId,
         };
     }
 
@@ -76,11 +86,13 @@ export class Thought {
     scale() {
         this.width = 100 * this.size;
         this.height = 100 * this.size;
+        this.save();
     }
 
     onKeyDown(event: any) {
         this.text = event.target.value;
         if(event.key == "Enter" || event.key == "Escape") {
+            this.save();
             this.isEditing = false;
         }
     }
@@ -119,6 +131,7 @@ export class Thought {
     onMouseUp() {
         this.mouseOffsetX = null;
         this.mouseOffsetY = null;
+        this.save();
     }
 
     onMouseMove(event: any) {
@@ -130,5 +143,39 @@ export class Thought {
 
         this.left = event.pageX - this.mouseOffsetX;
         this.top = event.pageY - this.mouseOffsetY;
+    }
+
+    /**
+     * Saves the current thought based on its internal `_isNew` state.
+     * If the thought is new, it is posted and all of its children are also saved.
+     * If it is not new, only the thought itself is saved and all of its children
+     * are left un-saved.
+     */
+    save() {
+        if (this._isNew) {
+            this.http.post('api/thoughts', this.toJson(), { headers: new HttpHeaders({'Content-Type': 'application/json','Authorization': this.loginService.idToken}), observe: 'response'}).subscribe(
+                res => { 
+                    console.log('post thought success'); 
+                    this._id = res.body['_id'];
+                    for(let thought of this.thoughts) {
+                        thought.parentId = this._id;
+                        thought.save();
+                    }
+                    this._isNew = false;
+                },
+                res => { console.log('post thought failure'); }
+            );
+            // Make sure that there aren't any new thoughts that need saving.
+            for(let thought of this.thoughts) {
+                if(thought.isNew) {
+                    thought.save();
+                }
+            }
+        } else {
+            this.http.put(`api/thoughts/${this._id}`, this.toJson(), { headers: new HttpHeaders({'Content-Type': 'application/json','Authorization': this.loginService.idToken}), observe: 'response'}).subscribe(
+                res => { console.log('put thought success'); },
+                res => { console.log('put thought failure'); }
+            );
+        }
     }
 }
