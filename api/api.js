@@ -34,8 +34,9 @@ app.use('/api/*', async function (req, res, next) {
     next();
 });
 
-app.post('/api/users', function(req, res) {
-    let id = req.id;
+app.post('/api/users', async function(req, res) {
+    let id = await verifyToken(req.get('Authorization'));
+    if(id == null) return res.status(401).send();
     mongo.user().findOne({ id: id }, function (err, user) {
         if(user == null) {
             console.log('No user found for idToken, so creating a new one');
