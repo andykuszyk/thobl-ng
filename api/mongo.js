@@ -38,10 +38,27 @@ module.exports = {
         return mongoose.model('line', lineSchema);
     },
     createThought: function(json) {
-        // todo: return model from json here.
+        let thought = new this.thought()();
+        thought.text = json.text;
+        thought.left = json.left;
+        thought.top = json.top;
+        thought.size = json.size;
+        thought.width = json.width;
+        thought.height = json.height;
+        thought.parentId = json.parentId
+        return thought;
     },
     toThoughtJson: function(model) {
-        // todo: return json from model here.
+        return {
+            'text': model.text,
+            'left': model.left,
+            'top': model.top,
+            'size': model.size,
+            'width': model.width,
+            'height': model.height,
+            'parentId': model.parentId,
+            '_id': model._id,
+        };
     },
 };
 
