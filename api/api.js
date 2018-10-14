@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client('893216655393-43s8tkkak2nj01r9anm958hharqib468.apps.googleusercontent.com');
 
+config.validate();
+
 async function verifyToken(token) {
     try{
         const ticket = await client.verifyIdToken({

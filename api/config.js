@@ -1,7 +1,7 @@
 module.exports = {
     validate: function () {
         if(process.argv.length < 5) {
-            console.log('Arguments required, usage is: node app.js [port] [mongo-user] [mongo-password]');
+            console.log('Arguments required, usage is: node api.js [port] [mongo-user] [mongo-password]');
             process.exit(-1);
         }
     },
