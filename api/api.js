@@ -23,6 +23,8 @@ async function verifyToken(token) {
     }
 };
 
+app.use(bodyParser.json());
+
 app.use('/api/*', async function (req, res, next) {
     var id = await verifyToken(req.get('Authorization'));
     req.id = id;
@@ -75,8 +77,6 @@ app.post('/api/thoughts', function(req, res) {
         }
     });
 });
-
-app.use(bodyParser.json());
 
 app.use(express.static('dist/thoughtspace'));
 
