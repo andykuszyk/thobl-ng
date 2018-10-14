@@ -62,20 +62,41 @@ app.post('/api/users', async function(req, res) {
 });
 
 app.post('/api/thoughts', function(req, res) {
-    mongo.thought().findById(req._id, function(error, thought) {
+    mongo.thought().findById(req.body._id, function(error, thought) {
+        if(error) {
+            return res.status(500).send(error);
+        }
         if(thought == null) {
             console.log('Createing a new thought');
-            let thought = mongo.createThought(req);
+            let thought = mongo.createThought(req.body);
             thought.save(function(err, t) {
                 if(err) {
                     res.status(500).send(err);
                 } else {
-                    res.status(201).send(toThoughtJson(t));
+                    res.status(201).send(mongo.toThoughtJson(t));
                 }
             });
         } else {
             res.status(405).send('Thought already exists for that id, use PUT instead');
         }
+    });
+});
+
+app.put('/api/thoughts/:id', function(req, res) {
+    mongo.thought().findById(req.params.id, function(error, thought) {
+        if(error) {
+            return res.status(500).send(error);
+        }
+        if(thought == null) {
+            return res.status(404).send();
+        }
+        thought.set(req.body);
+        thought.save(function(error, updatedThought) {
+            if(error) {
+                return res.status(500).send(error);
+            }
+            return res.status(200).send(mongo.toThoughtJson(updatedThought));
+        });
     });
 });
 
